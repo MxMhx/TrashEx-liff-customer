@@ -2,10 +2,7 @@ import Header from "../components/Header";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/images/Group.png";
 import "../components/style.css";
-import { BsBasket2 } from "react-icons/bs";
-import { BsCoin } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from 'react';
 import { getAllProductsByShopId } from "../api/strapi/productApi";
@@ -174,75 +171,133 @@ export default function ChooseShop() {
       {/* <Header counts={counts} products={products}/> */}
       <Container maxWidth="sm">
         {/* Search input field */}
-        <div className="flex justify-center pt-10">
-          <input
-            type="text"
-            className="border-2 border-gray-300 rounded-md p-2 w-full max-w-xs"
-            placeholder="Search product"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+        <div className="flex justify-center pt-8 px-4">
+          <div className="relative w-full max-w-md">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <input
+              type="text"
+              className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl bg-white shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 text-gray-700 placeholder-gray-400"
+              placeholder="ค้นหาสินค้า..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
         </div>
 
         {/* Display the shop name if products are available */}
-        {filteredProducts.length > 0 && <p className="text-3xl text-center pt-10">{filteredProducts[0]?.shop?.name}</p>}
+        {filteredProducts.length > 0 && (
+          <div className="text-center mt-8 mb-2 px-4">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+              {filteredProducts[0]?.shop?.name}
+            </h1>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto"></div>
+          </div>
+        )}
 
-        {/* Display filtered products */}
-        {/* {filteredProducts.map(product => ( */}
-        {filteredProducts
-          .filter(product => product.status === "approved")
-          .map(product => (
-          <div key={product.id}>
-            <div className="w-full h-60 bg-white mt-10 rounded-s-md">
-              <div className="flex justify-center">
-                <span
-                  className="circle"
-                  style={{
-                    backgroundImage: product.image?.data?.attributes?.url
-                      ? `url(${API_URL}${product.image.data.attributes.url})`
-                      : 'url(https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg)',
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    width: "100%",
-                    maxWidth: "150px",
-                    height: "150px",
-                    borderRadius: "50%",
-                  }}
-                ></span>
-              </div>
-              <div className="flex flex-row">
-                <button
-                  className="basis-1/4 rounded-bl-md bg-red-hard-bg text-white font-bold text-3xl pb-3 width-button-inandde"
-                  style={{ height: '2.9rem' }}
-                  onClick={() => handleDecrement(product.id)}>
-                  -
-                </button>
-                <button
-                  className="basis-1/2 col-start-2 col-span-4 bg-yellow-hard-bg font-bold width-button-count"
-                  style={{ height: '2.9rem' }}>
-                  {counts[product.id] || 0}
-                </button>
-                <button
-                  className="basis-1/4 bg-green-hard-bg text-white font-bold text-3xl pb-3 rounded-br-md width-button-inandde"
-                  style={{ height: '2.9rem' }}
-                  onClick={() => handleIncrement(product)}>
-                  +
-                </button>
+        {/* Products Container */}
+        <div className="px-4 mt-8">
+          {filteredProducts
+            .filter(product => product.status === "approved")
+            .map(product => (
+            <div key={product.id} className="mb-8">
+              {/* Main Product Card */}
+              <div className="w-full bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+                {/* Product Image Section */}
+                <div className="relative p-6 pb-4">
+                  <div className="flex justify-center">
+                    <div
+                      className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg overflow-hidden bg-gray-100"
+                      style={{
+                        backgroundImage: product.image?.data?.attributes?.url
+                          ? `url(${API_URL}${product.image.data.attributes.url})`
+                          : 'url(https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg)',
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    ></div>
+                  </div>
+                  
+                  {/* Product Info */}
+                  <div className="text-center mt-4 px-2">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 leading-tight">
+                      {product.name}
+                    </h3>
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                      <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm md:text-base font-semibold shadow-md">
+                        <span className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                          {product.point || 0} แต้ม
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Buttons Section */}
+                <div className="bg-gray-50 border-t border-gray-100">
+                  <div className="flex items-center">
+                    {/* Decrement Button */}
+                    <button
+                      className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 active:from-red-700 active:to-red-800 text-white font-bold text-xl md:text-2xl py-3 md:py-4 transition-all duration-200 transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded-bl-2xl"
+                      onClick={() => handleDecrement(product.id)}>
+                      <span className="flex items-center justify-center">
+                        <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M20 12H4" />
+                        </svg>
+                      </span>
+                    </button>
+
+                    {/* Count Display */}
+                    <div className="flex-1 bg-white border-l border-r border-gray-200 py-3 md:py-4 text-center">
+                      <div className="text-xl md:text-2xl font-bold text-gray-800">
+                        {counts[product.id] || 0}
+                      </div>
+                      <div className="text-xs md:text-sm text-gray-500 mt-1">
+                        ในตะกร้า
+                      </div>
+                    </div>
+
+                    {/* Increment Button */}
+                    <button
+                      className="flex-1 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 active:from-emerald-700 active:to-emerald-800 text-white font-bold text-xl md:text-2xl py-3 md:py-4 transition-all duration-200 transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 rounded-br-2xl"
+                      onClick={() => handleIncrement(product)}>
+                      <span className="flex items-center justify-center">
+                        <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-            <p className="text-center text-2xl mt-10">{product.name}</p>
-            <p className="text-center text-2xl mt-3 pb-10">{product.point || 0} แต้ม</p>
-          </div>
-        ))}
+          ))}
 
-        {/* Display a message if no products match the search term */}
-        {filteredProducts.length === 0 && <p className="text-center text-2xl mt-10">No products found</p>}
-        {showModal &&
-          <PointsModal text="แต้มของท่านไม่เพียงพอ" closeModal={() => setShowModal(false)} />
-        }
-        {showModal2 &&
-          <PointsModal text="ขออภัย สินค้าในสต็อกไม่เพียงพอ" closeModal={() => setShowModal2(false)} />
-        }
+          {/* Display a message if no products match the search term */}
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-16 px-4">
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+                <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                <h3 className="text-xl font-semibold text-gray-600 mb-2">ไม่พบสินค้า</h3>
+                <p className="text-gray-500">ลองค้นหาด้วยคำหรือชื่อสินค้าอื่น</p>
+              </div>
+            </div>
+          )}
+          {showModal &&
+            <PointsModal text="แต้มของท่านไม่เพียงพอ" closeModal={() => setShowModal(false)} />
+          }
+          {showModal2 &&
+            <PointsModal text="ขออภัย สินค้าในสต็อกไม่เพียงพอ" closeModal={() => setShowModal2(false)} />
+          }
+        </div>
       </Container>
     </>
   );

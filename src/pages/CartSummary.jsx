@@ -127,9 +127,9 @@ const CartSummary = () => {
     <>
       <Header />
       <div className="flex justify-center mt-6 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 w-full max-w-md border-2 border-gray-300">
-          <h2 className="text-center text-lg font-semibold text-gray-700 mb-4">รายการที่เลือก</h2>
-          <div className="border-b-2 border-gray-300 mb-4"></div>
+        <div className="bg-card-white shadow-lg rounded-xl p-4 sm:p-6 w-full max-w-md border-2 border-light-blue">
+          <h2 className="text-center text-xl font-bold text-dark-blue mb-4">รายการที่เลือก</h2>
+          <div className="border-b-2 border-light-blue mb-4"></div>
           {itemCount > 0 && (
             <ul className="space-y-3 sm:space-y-4">
               {cartItems.map((item) => {
@@ -141,20 +141,20 @@ const CartSummary = () => {
                   index += 1;
                   console.log("currentPoint", currentPoint, " totalPointsSum: ", totalPointsSum);
                   return (
-                    <li key={item.id} className="flex flex-row justify-between items-start sm:items-center py-4 border-b border-gray-200">
+                    <li key={item.id} className="flex flex-row justify-between items-start sm:items-center py-4 border-b border-light-blue bg-blue-gray rounded-lg px-4">
                       <div className="sm:w-full">
-                        <span className="font-semibold text-lg sm:text-xl">รายการที่ {index}:</span>
-                        <span className="text-md sm:text-lg ml-2">{item.name}</span>
+                        <span className="font-bold text-lg sm:text-xl text-dark-blue">รายการที่ {index}:</span>
+                        <span className="text-md sm:text-lg ml-2 text-dark-blue">{item.name}</span>
                         <br />
-                        <span className="text-sm sm:text-md text-gray-600">จำนวน {count} รายการ</span>
+                        <span className="text-sm sm:text-md text-primary-blue">จำนวน {count} รายการ</span>
                       </div>
                       {item.point ? (
-                        <div className="mt-2 text-md sm:text-lg text-gray-700">
-                          <p>ใช้แต้ม</p>
-                          <p> {totalPoints} แต้ม</p>
+                        <div className="mt-2 text-md sm:text-lg text-dark-blue">
+                          <p className="font-semibold">ใช้แต้ม</p>
+                          <p className="text-primary-blue font-bold"> {totalPoints} แต้ม</p>
                         </div>
                       ) : (
-                        <span className="text-md sm:text-lg text-gray-500">ฟรี</span>
+                        <span className="text-md sm:text-lg text-green-500 font-semibold">ฟรี</span>
                       )}
                     </li>
                   );
@@ -163,28 +163,27 @@ const CartSummary = () => {
               })}
             </ul>
           )}
-          <div className="border-t-2 border-gray-300 mt-4 pt-4">
-            <p className="text-center text-sm font-light">จำนวนทั้งหมด: {totalCountSum} รายการ</p>
-            <p className="text-center text-lg font-semibold">แต้มรวมทั้งหมด: {totalPointsSum} แต้ม</p><br />
-            {/* <p className="text-center text-sm sm:text-lg text-gray-500 mt-2">ขอบคุณที่ใช้บริการ</p> */}
+          <div className="border-t-2 border-light-blue mt-4 pt-4 bg-blue-gray rounded-lg px-4 py-3">
+            <p className="text-center text-sm font-medium text-dark-blue">จำนวนทั้งหมด: {totalCountSum} รายการ</p>
+            <p className="text-center text-xl font-bold text-primary-blue">แต้มรวมทั้งหมด: {totalPointsSum} แต้ม</p><br />
             {totalPointsSum > currentPoint ? (
-              <p className="text-center text-lg font-semibold  text-red-600">แต้มไม่เพียงพอต่อการแลกสินค้า</p>
+              <p className="text-center text-lg font-bold text-red-600">แต้มไม่เพียงพอต่อการแลกสินค้า</p>
             ):(
-              <p className="text-center text-sm sm:text-lg text-gray-500 mt-2">ขอบคุณที่ใช้บริการ</p>
+              <p className="text-center text-sm sm:text-lg text-dark-blue mt-2">ขอบคุณที่ใช้บริการ</p>
             )}
           </div>
 
           {/* QR Code section */}
           {itemCount > 0 && currentPoint >= totalPointsSum &&
             <div>
-              <p className="text-center pt-10 text-xl">Click เพื่อสร้าง QR Code สำหรับใช้ตอนรับสินค้า</p>
+              <p className="text-center pt-10 text-xl font-semibold text-dark-blue">Click เพื่อสร้าง QR Code สำหรับใช้ตอนรับสินค้า</p>
               <> 
                 <div className="mt-10 flex justify-center">
                   <button
                     onClick={toggleSwitch}
                     disabled={isButtonDisabled}
                     style={{ cursor: isButtonDisabled ? 'not-allowed' : 'pointer' }}
-                    className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                    className="bg-gradient-to-r from-primary-blue to-dark-blue hover:from-dark-blue hover:to-primary-blue text-white px-8 py-4 rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                   >
                     สร้าง QR Code
                   </button>
@@ -200,13 +199,13 @@ const CartSummary = () => {
                     onConfirm={handleConfirm}
                   />
                   {isShowQr &&
-                      <div className="m-5 p-5 flex flex-col items-center justify-center bg-gray-100 rounded-lg shadow-md">
-                        <div onClick={handleQrCodeClick} className="cursor-pointer bg-white rounded-lg p-6 shadow-lg transition-all hover:shadow-2xl">
+                      <div className="m-5 p-5 flex flex-col items-center justify-center bg-blue-gray border-2 border-light-blue rounded-xl shadow-md">
+                        <div onClick={handleQrCodeClick} className="cursor-pointer bg-card-white rounded-lg p-6 shadow-lg transition-all hover:shadow-2xl border-2 border-light-blue">
                           <QRCode value={randomString} className="rounded-md" /> {/* Generate QR code from random string */}
                         </div>
                         <button
                           onClick={handleViewQrCode}
-                          className="mt-4 bg-blue-400 text-white px-6 py-3 rounded-md shadow-lg hover:bg-blue-500 hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105"
+                          className="mt-4 bg-gradient-to-r from-dark-blue to-primary-blue text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 font-medium"
                         >
                           กดเพื่อขยายขนาด QR Code และ Download
                         </button>
@@ -224,24 +223,18 @@ const CartSummary = () => {
           className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
           onClick={handleCloseModal}
         >
-          <div className="bg-slate-200 p-4 rounded-lg" onClick={(e) => e.stopPropagation()}>
-            <h2 className="text-center text-lg text-black font-semibold m-4">QR Code สำหรับใช้ตอนรับสินค้า</h2>
-            <div onClick={handleQrCodeClick} className="flex justify-center items-center mt-6 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+          <div className="bg-card-white border-2 border-light-blue p-6 rounded-xl shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <h2 className="text-center text-xl text-dark-blue font-bold m-4">QR Code สำหรับใช้ตอนรับสินค้า</h2>
+            <div onClick={handleQrCodeClick} className="flex justify-center items-center mt-6 p-6 bg-blue-gray border-2 border-light-blue rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
               <QRCode value={randomString} size={256} className="rounded-md" />
             </div>
-            <div className="mt-4 flex space-x-4 justify-center">
+            <div className="mt-6 flex space-x-4 justify-center">
               <button
-                className="bg-red-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-600 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
+                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
                 onClick={handleCloseModal}
               >
                 Close
               </button>
-              {/* <button
-                className="bg-teal-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-teal-600 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
-                onClick={handleDownloadQrCode}
-              >
-                Download
-              </button> */}
             </div>
 
           </div>

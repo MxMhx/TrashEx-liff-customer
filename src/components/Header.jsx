@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
-import logo from "../assets/images/Group.png";
+import logo from "../assets/images/trash-ex-logo.png";
 import "./style.css";
 import { BsBasket2, BsCoin } from "react-icons/bs";
 import { getUser } from "../api/strapi/userApi";
@@ -83,23 +83,23 @@ function Header() {
 
   return (
     <>
-      <nav className="flex items-center justify-between p-5 pr-20 bg-white">
+      <nav className="flex items-center justify-between p-5 pr-20 bg-gradient-to-r from-primary-blue to-dark-blue shadow-lg">
         <NavLink to="/home">
-          <img src={logo} alt="Logo" width={50} />
+          <img src={logo} alt="Logo" width={100} className="filter brightness-0 invert" />
         </NavLink>
 
         <div className="flex items-center relative">
-          <BsBasket2 className="w-10 h-10 text-green-700 ml-10" onClick={handleBasketClick} />
+          <BsBasket2 className="w-10 h-10 text-white hover:text-light-blue ml-10 transition-colors duration-200 cursor-pointer" onClick={handleBasketClick} />
           {totalItems > 0 && (
-            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center border-2 border-white shadow-md">
               {totalItems}
             </span>
           )}
         </div>
 
         <div className="flex flex-col items-center">
-          <BsCoin className="w-7 h-7 text-yellow-hard ml-8" onClick={handleCoinClick} />
-          <p className="ml-6 mt-2">
+          <BsCoin className="w-7 h-7 text-yellow-400 hover:text-yellow-300 ml-8 transition-colors duration-200 cursor-pointer" onClick={handleCoinClick} />
+          <p className="ml-6 mt-2 text-white font-semibold">
             <strong>{user?.point ?? 0}</strong>
           </p>
         </div>
@@ -107,22 +107,22 @@ function Header() {
         <div>
           <ul id="navbar" className={clicked ? "navbar open" : "navbar"}>
             <li>
-              <NavLink className="font-semibold hover:text-yellow-hard" to="/update-user-profile">
+              <NavLink className="font-semibold text-white hover:text-light-blue transition-colors duration-200" to="/update-user-profile">
                 ข้อมูลส่วนตัว
               </NavLink>
             </li>
             <li>
-              <NavLink className="font-semibold hover:text-yellow-hard" to={`/history-point/${user?.id}`}>
+              <NavLink className="font-semibold text-white hover:text-light-blue transition-colors duration-200" to={`/history-point/${user?.id}`}>
                 คะแนนสะสมและประวัติการแลกแต้ม
               </NavLink>
             </li>
             <li>
-              <NavLink className="font-semibold hover:text-yellow-hard" to={`/history-service-machine/${user?.id}`}>
+              <NavLink className="font-semibold text-white hover:text-light-blue transition-colors duration-200" to={`/history-service-machine/${user?.id}`}>
                 ประวัติการใช้บริการตู้
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={handleLogout} className="font-semibold hover:text-yellow-hard" to={'/'}>
+              <NavLink onClick={handleLogout} className="font-semibold text-white hover:text-red-300 transition-colors duration-200" to={'/'}>
                 ออกจากระบบ
               </NavLink>
             </li>
@@ -130,7 +130,7 @@ function Header() {
         </div>
 
         <div id="mobile" onClick={handleClick}>
-          <i id="bar" className={clicked ? "fas fa-times" : "fas fa-bars"}></i>
+          <i id="bar" className={clicked ? "fas fa-times text-white" : "fas fa-bars text-white"}></i>
         </div>
       </nav>
 

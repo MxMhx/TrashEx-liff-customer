@@ -161,3 +161,51 @@ export const updateShop = async (token: string, shopId: number, shopData: Record
         throw error;
     }
 };
+
+export const getShopsWithProducts = async (token: string): Promise<Shop[]> => {
+    if (!token) {
+        throw new Error('No token provided. User must be authenticated.');
+    }
+    try {
+        // Fetch shops with their products populated
+        const url = `${API_URL}/api/shops?pagination[limit]=1000&populate[image]=true&populate[products]=true`;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Error fetching shops with products:', errorData);
+            throw new Error(`Request failed with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('shops with products data', data);
+        
+        // Map and filter shops that have products
+        const shopsWithProducts: Shop[] = data.data
+            .filter((item: any) => item.attributes.products && item.attributes.products.data && item.attributes.products.data.length > 0)
+            .map((item: any) => ({
+                id: item.id,
+                name: item.attributes.name,
+                location: item.attributes.location,
+                latitude: item.attributes.latitude,
+                longitude: item.attributes.longitude,
+                createdAt: item.attributes.createdAt,
+                updatedAt: item.attributes.updatedAt,
+                publishedAt: item.attributes.publishedAt,
+                bookBankNumber: item.attributes.bookBankNumber,
+                bookBankImage: item.attributes.image,
+                image: item.attributes.image,
+            }));
+        
+        console.log('filtered shops with products', shopsWithProducts);
+        return shopsWithProducts;
+    } catch (error) {
+        console.error('Error fetching shops with products:', error.message);
+        throw error;
+    }
+};

@@ -14,10 +14,15 @@
 
 :root {
   --body-font: "Sarabun", sans-serif;
+  --primary-blue: #0088FF;
+  --dark-blue: #166ECC;
+  --light-blue: #BDCFD9;
+  --blue-gray: #F8FAFB;
+  --card-white: #FFFFFF;
 }
 
 body {
-  background-color: #E9F6FC;
+  background-color: var(--blue-gray);
   font-family: var(--body-font);
 }
 
@@ -26,68 +31,88 @@ body {
   flex-direction: column;
   width: auto;
   height: auto;
-  background-color: #FBB615;
+  background-color: var(--card-white);
+  border: 2px solid var(--light-blue);
   margin-top: rem;
   padding-bottom: 2rem;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 1.3rem;
   margin-bottom: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 136, 255, 0.1), 0 2px 4px -1px rgba(0, 136, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.shop-2:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 136, 255, 0.1), 0 4px 6px -2px rgba(0, 136, 255, 0.05);
+  transform: translateY(-2px);
 }
 
 .circle {
   width: 95px;
   height: 95px;
   margin: 2rem 0rem 2rem 0rem;
-  box-shadow: 0px 1px 3px gray inset;
+  box-shadow: 0px 2px 8px rgba(22, 110, 204, 0.15);
   border-radius: 50%;
+  border: 2px solid var(--light-blue);
 }
+
 .circle-shop-vegetable{
   width: 250px;
   height: 250px;
-  box-shadow: 0px 1px 3px gray inset;
+  box-shadow: 0px 4px 12px rgba(22, 110, 204, 0.2);
   border-radius: 50%;
   background-image: url('./assets/images/fruit.png');
   background-size: cover;
   background-repeat: no-repeat;
+  border: 3px solid var(--light-blue);
 }
+
 .circle-shop-fruit{
   width: 250px;
   height: 250px;
-  box-shadow: 0px 1px 3px gray inset;
+  box-shadow: 0px 4px 12px rgba(22, 110, 204, 0.2);
   border-radius: 50%;
   background-image: url('./assets/images/fruit-2.png');
   background-size: cover;
   background-repeat: no-repeat;
+  border: 3px solid var(--light-blue);
 }
+
 .circle-shop-egg{
   width: 250px;
   height: 250px;
-  box-shadow: 0px 1px 3px gray inset;
+  box-shadow: 0px 4px 12px rgba(22, 110, 204, 0.2);
   border-radius: 50%;
   background-image: url('./assets/images/egg.png');
   background-size: cover;
   background-repeat: no-repeat;
+  border: 3px solid var(--light-blue);
 }
+
 .circle-shop-duck-egg{
   width: 250px;
   height: 250px;
-  box-shadow: 0px 1px 3px gray inset;
+  box-shadow: 0px 4px 12px rgba(22, 110, 204, 0.2);
   border-radius: 50%;
   background-image: url('./assets/images/duckegg.png');
   background-size: cover;
   background-repeat: no-repeat;
+  border: 3px solid var(--light-blue);
 }
+
 .circle-shop-fruit-2{
   width: 250px;
   height: 250px;
-  box-shadow: 0px 1px 3px gray inset;
+  box-shadow: 0px 4px 12px rgba(22, 110, 204, 0.2);
   border-radius: 50%;
   background-image: url('./assets/images/fruit-3.png');
   background-size: cover;
   background-repeat: no-repeat;
+  border: 3px solid var(--light-blue);
 }
+
 .custom-font {
   font-family: 'Sarabun';
 }
@@ -143,6 +168,8 @@ body {
 }
 .width-button-count {
   width: 250px;
+  background: linear-gradient(135deg, var(--light-blue), var(--card-white));
+  border: 1px solid var(--light-blue);
 }
 .number-basket {
   position: relative;
@@ -152,20 +179,50 @@ body {
 .height-bg{
   height: auto;
 }
+
+/* Blue theme buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 136, 255, 0.3);
+}
+
+.btn-secondary {
+  background-color: var(--dark-blue);
+  color: white;
+  border: 1px solid var(--light-blue);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-blue);
+  transform: translateY(-1px);
+}
+
 .slider-container {
   width: 300px;
   height: 30px;
-  background-color: #ccc;
+  background-color: var(--light-blue);
   border-radius: 15px;
   display: flex;
   align-items: center;
   cursor: pointer;
   position: relative;
   transition: background-color 0.3s ease;
+  border: 2px solid var(--light-blue);
 }
 
 .slider-container.on {
-  background-color: #4caf50;
+  background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
 }
 
 .slider {
@@ -177,12 +234,13 @@ body {
 .slider-button {
   width: 26px;
   height: 26px;
-  background-color: #fff;
+  background-color: var(--card-white);
   border-radius: 50%;
   position: absolute;
   top: 2px;
   left: 2px;
   transition: left 0.3s ease;
+  box-shadow: 0 2px 4px rgba(22, 110, 204, 0.3);
 }
 
 .coin-bg {
@@ -193,10 +251,12 @@ body {
   left: 273px;
 }
 .shadow-can{
-  box-shadow: 0 4px 4px -3px rgb(0 0 0 / 0.6) 
+  box-shadow: 0 4px 6px -1px rgba(22, 110, 204, 0.1), 0 2px 4px -1px rgba(22, 110, 204, 0.06);
 }
 .bg-content {
-  background-color: #F9F9F9;
+  background-color: var(--card-white);
+  border: 1px solid var(--light-blue);
+  border-radius: 8px;
 }
 
 .basket-order {
@@ -211,9 +271,24 @@ body {
   font-size: 12px;
   font-weight: bold; 
   color: white;
-  background-color: red;
+  background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
   border-radius: 50%;
+  border: 2px solid var(--card-white);
 }
+
+/* Tab styling */
+.tablink {
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.tablink.w3-green, .w3-green {
+  background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue)) !important;
+  color: white !important;
+}
+
 .dciIuw {
   margin-top: 3rem;
 }
@@ -237,6 +312,21 @@ body {
 .product-name {
   margin-top: 2rem !important;
 }
+
+/* Card styling */
+.card {
+  background-color: var(--card-white);
+  border: 1px solid var(--light-blue);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 136, 255, 0.1), 0 2px 4px -1px rgba(0, 136, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 136, 255, 0.1), 0 4px 6px -2px rgba(0, 136, 255, 0.05);
+  transform: translateY(-2px);
+}
+
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
   .basket-order {

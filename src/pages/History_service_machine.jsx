@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import "../index.css";
 import can from "../assets/images/Can_2_.png";
 import bottle from "../assets/images/bottle.png";
-import cookLogo from "../assets/images/logo.png";
+import trashExLogo from "../assets/images/trash-ex-logo.png";
 import { FaChevronRight } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { getAllHistoryMachines } from "../api/strapi/historyMachineApi";
@@ -73,7 +73,7 @@ export default function HistoryServiceMachine() {
           >
             <p className="text-center">ตู้รับน้ำมันพืชใช้แล้ว</p>
             <div className="flex justify-center">
-              <img src={cookLogo} alt="logo" width="70" className="mt-5" />
+              <img src={trashExLogo} alt="logo" width="100" className="mt-5" />
             </div>
           </button>
         </div>

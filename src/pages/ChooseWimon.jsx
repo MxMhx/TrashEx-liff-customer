@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/images/Group.png";
+import logo from "../assets/images/trash-ex-logo.png";
 import "../components/style.css";
 import { BsBasket2 } from "react-icons/bs";
 import { BsCoin } from "react-icons/bs";
@@ -26,7 +26,7 @@ export default function ChooseWimon() {
     <>
       <nav className="flex items-center justify-between p-5 pr-20 bg-white">
         <NavLink to="/">
-          <img src={logo} alt="Logo" width={50} />
+          <img src={logo} alt="Logo" width={100} />
         </NavLink>
         <NavLink to="/conclusion">
         <BsBasket2 className="w-10 h-10 text-green-700 ml-10 relative top-4" />

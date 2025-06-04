@@ -1,5 +1,5 @@
 nav {
-    box-shadow: 0 5px 15px rgba(255,255,255,0.06);
+    box-shadow: 0 5px 15px rgba(0, 136, 255, 0.15);
     transition: 0.3s ease-in-out;
 }
 #navbar {
@@ -8,7 +8,7 @@ nav {
     justify-content: center;
 }
 li a:hover{
-    color: #FBB615;
+    color: #BDCFD9 !important;
 }
 li {
     padding: 0 20px;
@@ -16,7 +16,7 @@ li {
 }
 
 .active {
-   color: #FBB615;
+   color: #BDCFD9 !important;
 }
 
 #mobile {
@@ -24,7 +24,7 @@ li {
 }
 
 #mobile i {
-    color: #007F00;
+    color: #FFFFFF;
 }
 
 .profile-picture {
@@ -45,8 +45,8 @@ li {
         right: -330px;
         width: 330px;
         height: 100vh;
-        background-color: #fff;
-        box-shadow: 0 40px 60px rgba(255,255,255,0.1);
+        background: linear-gradient(135deg, #0088FF, #166ECC);
+        box-shadow: 0 40px 60px rgba(0, 136, 255, 0.2);
         padding: 40px 0 0 0;
         transition: 0.3s ease-in-out;
         z-index: 111111;
@@ -63,6 +63,7 @@ li {
     #navbar li a.fontSize {
         font-size: 1.1rem;
         text-align: left;
+        color: #FFFFFF !important;
     }
 
     #navbar li a::before {
@@ -71,6 +72,7 @@ li {
         position: relative;
         top: 4px;
         padding-right: 4px;
+        color: #BDCFD9;
     }
 
     #mobile {
@@ -82,5 +84,6 @@ li {
         cursor: pointer;
         position:relative;
         left: 2rem;
+        color: #FFFFFF;
     }
 }

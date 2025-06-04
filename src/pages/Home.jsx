@@ -1,6 +1,6 @@
 import "../index.css";
 import { Link } from "react-router-dom";
-import { getAllShops } from "../api/strapi/shopApi";
+import { getShopsWithProducts } from "../api/strapi/shopApi";
 import { useState, useEffect } from "react";
 import { FaMapMarkerAlt } from 'react-icons/fa'; // import icon for map
 import Header from '../components/Header';
@@ -24,7 +24,7 @@ function Home() {
     const fetchShops = async () => {
       try {
         setLoading(true);
-        const shopData = await getAllShops(token);
+        const shopData = await getShopsWithProducts(token);
         setShops(shopData);
         setLoading(false);
       } catch (error) {
@@ -75,10 +75,10 @@ function Home() {
           </>
         ))} */}
          {shops.map((shop) => (
-          <div key={shop.id} className="relative flex flex-col w-auto h-auto bg-yellow-500 mt-4 mb-4 pb-2 justify-center items-center rounded-lg text-lg shadow-lg p-4">
+          <div key={shop.id} className="relative flex flex-col w-auto h-auto bg-card-white border-2 border-light-blue mt-4 mb-4 pb-2 justify-center items-center rounded-xl text-lg shadow-lg p-4 hover:shadow-xl transition-all duration-300 hover:transform hover:-translate-y-1">
             <Link to={`/shop/${shop.id}`} className="flex flex-col w-full h-full items-center">
               <span
-                className="circle w-full h-48 rounded-lg bg-cover bg-center"
+                className="circle w-full h-48 rounded-lg bg-cover bg-center border-2 border-light-blue"
                 style={{
                   backgroundImage: shop.image?.data?.attributes?.url
                     ? `url(${API_URL}${shop.image.data.attributes.url})`
@@ -86,7 +86,7 @@ function Home() {
                   backgroundSize: "cover",
                 }}
               ></span>
-              <span className="text-center text-2xl font-medium mb-12 drop-shadow-md">{shop.name}</span>
+              <span className="text-center text-2xl font-semibold mb-12 drop-shadow-md text-dark-blue mt-4">{shop.name}</span>
             </Link>
 
             {/* Add map icon with link to Google Maps positioned at the bottom right */}
@@ -94,9 +94,9 @@ function Home() {
               href={`https://www.google.com/maps/search/?api=1&query=${shop.latitude},${shop.longitude}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-2 left-2 text-green-700 flex items-center bg-white/40 rounded-lg p-1"
+              className="absolute bottom-2 left-2 text-primary-blue flex items-center bg-light-blue/30 hover:bg-light-blue/50 rounded-lg p-2 transition-all duration-200"
             >
-              <FaMapMarkerAlt className="mr-1 text-base" /> Locate on Map
+              <FaMapMarkerAlt className="mr-1 text-base" /> <span className="text-sm font-medium">Locate on Map</span>
             </a>
           </div>
         ))}
